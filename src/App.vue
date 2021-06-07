@@ -1,10 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <the-sidebar></the-sidebar>
+  <the-dashboard></the-dashboard>
 </template>
+
+<script>
+import TheSidebar from "./components/layout/sidebar/TheSidebar.vue";
+import TheDashboard from "./components/layout/dashboard/TheDashboard.vue";
+
+export default {
+  components: {
+    TheSidebar,
+    TheDashboard,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -13,18 +22,21 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
+  display: grid;
+  grid-template-areas: "Sidebar Dashboard";
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr;
 
-#nav {
-  padding: 30px;
+  .Sidebar {
+    grid-area: Sidebar;
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  .Header {
+    grid-area: Header;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  .Dashboard {
+    grid-area: Dashboard;
   }
 }
 </style>
