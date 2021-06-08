@@ -1,7 +1,7 @@
 <template>
-  <div v-for="entry in entries" :key="entry" class="SidebarEntry">
+  <div v-for="todo in $store.getters.todos" :key="todo._id" class="SidebarEntry" :id="todo._id">
     <base-icon name="puzzle" class="SidebarEntry-icon"></base-icon>
-    {{ entry }}
+    <router-link :to="`/todos/${todo._id}`" class="Sidebar-nav-link"> {{ todo.name }}</router-link>
   </div>
 </template>
 
@@ -11,11 +11,19 @@ export default {
   components: {
     BaseIcon,
   },
+  data() {
+    return {
+      todos: null,
+    };
+  },
   props: {
     entries: {
       type: Array,
       required: true,
     },
+  },
+  created() {
+    this.$store.dispatch("getTodos");
   },
 };
 </script>

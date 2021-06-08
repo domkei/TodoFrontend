@@ -10,6 +10,8 @@ const icons = {
   info: require("../../assets/icons8-info.svg"),
   edit: require("../../assets/icons8-bearbeiten.svg"),
   home: require("../../assets/icons8-zuhause.svg"),
+  plus: require("../../assets/icons8-plus.svg"),
+  delete: require("../../assets/icons8-müll.svg"),
 };
 
 export default {
