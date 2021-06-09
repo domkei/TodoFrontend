@@ -11,7 +11,7 @@
           id=""
           cols="30"
           rows="10"
-          placeholder="describe the todo.."
+          placeholder="Describe the todo..."
           v-model="todo.description"
         ></textarea>
         <base-button @click="saveTodo">Create Todo</base-button>
@@ -51,17 +51,16 @@ export default {
       this.error.status = true;
     },
     "$store.state.response": function(value) {
-      if (value._id)
-        this.$router.push({
-          path: `/todos/${value._id}`,
-        });
+      this.$router.push({
+        path: `/todos/${value._id}`,
+      });
     },
   },
   methods: {
     saveTodo() {
       if (this.todo.name === "") {
         this.error.status = true;
-        this.error.message = "Bitte gib einen Namen für dein Todo an :)";
+        this.error.message = "Please enter a name for the list :)";
         return;
       }
       this.$store.dispatch("saveTodo", { todo: this.todo });
@@ -75,6 +74,7 @@ export default {
   h1 {
     text-align: left;
     padding: 20px;
+    font-size: 48px;
   }
 
   &-wrapper {
@@ -100,10 +100,10 @@ export default {
 
   input,
   textarea {
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 18px;
     padding: 10px;
-    border: 2px solid #ee63a8;
+    border: 2px solid $color-main-purple;
   }
 
   textarea {
@@ -118,8 +118,9 @@ export default {
 }
 
 .Banner {
-  background: #f50057;
+  background: $color-red;
   padding: 20px;
   font-size: 20px;
+  margin-top: 20px;
 }
 </style>

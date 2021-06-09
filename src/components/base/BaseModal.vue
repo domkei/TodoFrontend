@@ -66,8 +66,8 @@ export default {
 
 <style lang="scss" scoped>
 .Modal {
-  background: #ffffff;
-  box-shadow: 2px 2px 20px 1px;
+  background: $color-background-dark;
+  box-shadow: 2px 2px 20px 1px $color-main-purple;
   overflow-x: auto;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,6 +96,13 @@ export default {
     position: absolute;
     top: 10px;
     right: 10px;
+
+    .btn-close {
+      background: $color-red;
+      border: 0;
+      color: $color-white-main;
+      font-size: 18px;
+    }
   }
 
   form {
@@ -123,7 +130,7 @@ export default {
   .Btn {
     border-radius: 0;
     padding: 10px 30px;
-    margin: 20px;
+    margin-top: 20px;
   }
 }
 

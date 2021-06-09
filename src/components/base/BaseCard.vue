@@ -1,5 +1,5 @@
 <template>
-  <div class="BaseCardContainer" @drop="onDrop($event, category)" @dragenter.prevent @dragover.prevent>
+  <div class="BaseCard-container" @drop="onDrop($event, category)" @dragenter.prevent @dragover.prevent>
     <div
       v-for="task in tasks"
       class="BaseCard"
@@ -14,8 +14,8 @@
       <div class="BaseCard-heading">
         <input type="text" v-model="task.name" disabled="true" />
         <div class="BaseCard-Icon-wrapper">
-          <base-icon class="BaseCard-Icon" name="edit" @click="editTodo"></base-icon>
-          <base-icon class="BaseCard-Icon" name="delete" @click="deleteTask"></base-icon>
+          <base-icon class="BaseCard-Icon black" name="edit" @click="editTodo" draggable="false"></base-icon>
+          <base-icon class="BaseCard-Icon black delete" name="delete" @click="deleteTask" draggable="false"></base-icon>
         </div>
       </div>
       <textarea
@@ -93,19 +93,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.BaseCardContainer {
-  background: rgba(232, 48, 140, 0.753);
+.BaseCard-container {
+  background: $color-main-purple;
   width: 25vw;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 270px;
+  min-height: 305px;
 }
 
 .BaseCard {
   width: 80%;
-  background: #fff;
+  background: $color-white-main;
   border-radius: 20px;
   padding: 20px;
   margin: 20px;
@@ -114,18 +114,32 @@ export default {
   position: relative;
 
   &-doneStatus {
-    background: rgba(47, 255, 92, 0.425);
     height: 100%;
     width: 100%;
     position: absolute;
     right: 0;
     top: 0;
     border-radius: 20px;
+    pointer-events: none;
+
+    ~ .BaseCard-heading > .BaseCard-Icon-wrapper > img:first-of-type {
+      display: none;
+    }
+
+    ~ .BaseCard-heading input {
+      text-decoration: line-through;
+    }
+
+    ~ textarea {
+      text-decoration: line-through;
+    }
 
     & img {
-      position: relative;
-      top: 25%;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
       pointer-events: none;
+      filter: $color-icons-black;
     }
   }
 
@@ -134,9 +148,16 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     height: 30%;
+    margin-bottom: 15px;
 
     input[type="text"] {
       font-size: 16px;
+      background: $color-white-main;
+      border: 1px solid $color-background-dark;
+      font-weight: 800;
+      color: $color-background-dark;
+      font-size: 18px;
+      text-transform: uppercase;
 
       &:disabled {
         background: none;
@@ -148,10 +169,17 @@ export default {
   &-Icon {
     cursor: pointer;
     margin-left: 15px;
+
+    &-wrapper {
+      display: flex;
+    }
   }
 
   textarea {
     resize: none;
+    background: $color-white-main;
+    font-size: 15px;
+
     &:disabled {
       background: none;
       border: none;

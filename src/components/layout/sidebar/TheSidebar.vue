@@ -63,10 +63,11 @@ export default {
       text-decoration: none;
       display: flex;
       align-items: center;
+      color: $color-white-main;
 
       &:active,
       &:visited {
-        color: #2c3e50;
+        color: $color-white-main;
       }
     }
   }
@@ -80,7 +81,7 @@ export default {
     border: 0;
     width: 50%;
     margin-left: 0;
-    background-color: rgba(232, 48, 140, 0.753);
+    background-color: $color-main-purple;
     height: 2px;
   }
 }

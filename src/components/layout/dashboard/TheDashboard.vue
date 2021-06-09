@@ -10,7 +10,7 @@
 
 <style lang="scss" scoped>
 .Dashboard {
-  padding: 20px;
+  padding: 40px;
 
   .scale-enter-active,
   .scale-leave-active {

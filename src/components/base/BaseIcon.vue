@@ -1,5 +1,5 @@
 <template>
-  <img :src="iconComponent" />
+  <img class="Icon" :src="iconComponent" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ const icons = {
   plus: require("../../assets/icons8-plus.svg"),
   delete: require("../../assets/icons8-müll.svg"),
   deleteBig: require("../../assets/icons8-löschenBIG.svg"),
-  checked: require("../../assets/icons8-geprüft.svg"),
+  checked: require("../../assets/icons8-geprüftNew.svg"),
 };
 
 export default {
@@ -31,3 +31,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.Icon {
+  filter: $color-icons-white;
+}
+
+.black {
+  filter: $color-icons-black;
+}
+
+.delete {
+  &:hover {
+    filter: invert(13%) sepia(94%) saturate(4431%) hue-rotate(330deg) brightness(101%) contrast(110%);
+  }
+}
+</style>

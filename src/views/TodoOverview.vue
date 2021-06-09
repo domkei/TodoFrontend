@@ -13,19 +13,15 @@
     <div class="TodoOverview-todos" :key="updateKey">
       <div>
         <h1>Todo</h1>
-        <base-card-container :data="{ todo }" :tasks="getTodoTasks" :category="`todo`"></base-card-container>
+        <base-card :data="{ todo }" :tasks="getTodoTasks" :category="`todo`"></base-card>
       </div>
       <div>
         <h1>In progress</h1>
-        <base-card-container
-          :data="{ todo }"
-          :tasks="getInProgressTasks"
-          :category="`unfinished`"
-        ></base-card-container>
+        <base-card :data="{ todo }" :tasks="getInProgressTasks" :category="`unfinished`"></base-card>
       </div>
       <div>
         <h1>Done</h1>
-        <base-card-container :data="{ todo }" :tasks="getDoneTasks" :category="`done`"></base-card-container>
+        <base-card :data="{ todo }" :tasks="getDoneTasks" :category="`done`"></base-card>
       </div>
     </div>
     <base-modal v-show="isModalVisible" @close="closeModal" :data="{ todo }"> </base-modal>
@@ -33,12 +29,12 @@
 </template>
 
 <script>
-import BaseCardContainer from "../components/base/BaseCardContainer.vue";
+import BaseCard from "../components/base/BaseCard.vue";
 import BaseIcon from "../components/base/BaseIcon.vue";
 import BaseModal from "../components/base/BaseModal.vue";
 
 export default {
-  components: { BaseCardContainer, BaseIcon, BaseModal },
+  components: { BaseCard, BaseIcon, BaseModal },
   created() {
     this.$store.dispatch("getActiveTodo", { id: this.$route.params.id });
   },
@@ -106,7 +102,7 @@ export default {
       text-align: left;
 
       h1 {
-        font-size: 42px;
+        font-size: 48px;
         margin-top: 0;
       }
     }
@@ -117,13 +113,23 @@ export default {
 
   &-todos {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    @include for-phone-only {
+      grid-gap: 20px;
+    }
+
+    h1 {
+      text-align: left;
+    }
   }
 
   &-addTask {
     cursor: pointer;
+    margin-right: 10px;
     &:hover {
-      filter: invert(62%) sepia(75%) saturate(963%) hue-rotate(98deg) brightness(97%) contrast(101%);
+      filter: invert(73%) sepia(18%) saturate(5844%) hue-rotate(124deg) brightness(96%) contrast(98%);
     }
   }
 

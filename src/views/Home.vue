@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import background from "../assets/landingPage/undraw_Checklist__re_2w7v.svg";
+import background from "../assets/landingPage/checking.svg";
 import BaseButton from "../components/base/BaseButton.vue";
 export default {
   components: { BaseButton },
@@ -41,6 +41,16 @@ export default {
     p {
       font-size: 28px;
     }
+
+    .Btn {
+      margin-top: 50px;
+    }
+  }
+
+  &-image {
+    position: absolute;
+    top: 60%;
+    left: 35%;
   }
 }
 </style>

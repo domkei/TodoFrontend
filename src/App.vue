@@ -16,18 +16,20 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap");
-
+body {
+  margin: 0;
+}
 #app {
-  font-family: "Montserrat", sans-serif;
+  font-family: $font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $color-white-main;
   display: grid;
   grid-template-areas: "Sidebar Dashboard";
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr;
+  background: $color-background-dark;
 
   .Sidebar {
     grid-area: Sidebar;
@@ -39,6 +41,11 @@ export default {
 
   .Dashboard {
     grid-area: Dashboard;
+  }
+
+  textarea,
+  input {
+    font-family: $font;
   }
 }
 </style>

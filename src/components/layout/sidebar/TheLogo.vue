@@ -3,12 +3,12 @@
     <lord-icon
       src="https://cdn.lordicon.com/nocovwne.json"
       trigger="morph"
-      colors="primary:#121331,secondary:#e8308c"
+      colors="primary:#ffffff,secondary:#c69cf4"
       style="width:70px;height:70px"
       class="Logo-src"
     >
     </lord-icon>
-    <h1 class="Logo-headline">TodoMate.</h1>
+    <h1 class="Logo-headline">Todo<span>Mate.</span></h1>
   </div>
 </template>
 
@@ -24,9 +24,13 @@
   }
 
   &-headline {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 15px;
     text-indent: -15px;
+
+    span {
+      color: $color-main-purple;
+    }
   }
 }
 </style>
