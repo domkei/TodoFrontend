@@ -4,12 +4,18 @@
 
 <style lang="scss" scoped>
 .Btn {
-  background: #ee63a8;
-  font-size: 20px;
-  font-weight: bold;
-  border: 3px solid #000;
-  cursor: pointer;
-  color: #eee;
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
   border-radius: 10px;
+  display: block;
+  background: #ee63a8;
+  cursor: pointer;
+  font-size: 16px;
 }
 </style>

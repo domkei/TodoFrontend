@@ -14,7 +14,7 @@
           placeholder="describe the todo.."
           v-model="todo.description"
         ></textarea>
-        <base-button @click="saveTodo">Create Task</base-button>
+        <base-button @click="saveTodo">Create Todo</base-button>
       </form>
       <div class="Banner" v-if="error.status">{{ error.message }}</div>
     </div>
@@ -36,6 +36,7 @@ export default {
         status: null,
         message: "",
       },
+      createdTodoId: null,
     };
   },
   watch: {
@@ -49,6 +50,12 @@ export default {
       }
       this.error.status = true;
     },
+    "$store.state.response": function(value) {
+      if (value._id)
+        this.$router.push({
+          path: `/todos/${value._id}`,
+        });
+    },
   },
   methods: {
     saveTodo() {
@@ -57,7 +64,6 @@ export default {
         this.error.message = "Bitte gib einen Namen für dein Todo an :)";
         return;
       }
-
       this.$store.dispatch("saveTodo", { todo: this.todo });
     },
   },
@@ -106,9 +112,8 @@ export default {
 
   .Btn {
     width: max-content;
-    padding: 10px 15px;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    margin: 0;
+    margin-top: 30px;
   }
 }
 

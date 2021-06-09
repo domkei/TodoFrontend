@@ -49,11 +49,12 @@ export default {
     saveTask() {
       const updatedTodo = this.todo;
 
-      updatedTodo.todo.tasks.push({ name: this.name, description: this.description });
+      updatedTodo.todo.tasks.push({ name: this.name, description: this.description, status: "todo" });
       this.$store.dispatch("updateTodo", {
         id: this.$route.params.id,
         todo: updatedTodo,
       });
+
       this.close();
     },
   },

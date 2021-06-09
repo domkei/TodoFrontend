@@ -17,11 +17,7 @@
     </div>
     <h3 class="Sidebar-myTodos">My Todos</h3>
     <hr />
-    <sidebar-entry :entries="SidebarEntries"></sidebar-entry>
-    <div class="Sidebar-info">
-      <base-icon name="info" class="Sidebar-icon"></base-icon>
-      <p>About</p>
-    </div>
+    <sidebar-entry></sidebar-entry>
   </div>
 </template>
 
@@ -36,15 +32,10 @@ export default {
     TheLogo,
     BaseIcon,
   },
-  data() {
-    return {
-      SidebarEntries: ["Overview", "Create new", "Todos"],
-    };
-  },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .Sidebar {
   border-right: 1px solid #eee;
   display: flex;
@@ -72,6 +63,11 @@ export default {
       text-decoration: none;
       display: flex;
       align-items: center;
+
+      &:active,
+      &:visited {
+        color: #2c3e50;
+      }
     }
   }
 
@@ -86,14 +82,6 @@ export default {
     margin-left: 0;
     background-color: rgba(232, 48, 140, 0.753);
     height: 2px;
-  }
-
-  &-info {
-    margin-top: 100px;
-    display: flex;
-  }
-  &-icon {
-    padding-right: 10px;
   }
 }
 </style>

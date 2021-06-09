@@ -1,11 +1,21 @@
 <template>
-  <div class="BaseCardContainer">
-    <div v-for="task in data.todo.tasks" class="BaseCard" :key="task._id" :id="task._id">
+  <div class="BaseCardContainer" @drop="onDrop($event, category)" @dragenter.prevent @dragover.prevent>
+    <div
+      v-for="task in tasks"
+      class="BaseCard"
+      :key="task._id"
+      :id="task._id"
+      draggable="true"
+      @dragstart="startDrag($event, task)"
+    >
+      <div v-if="category === 'done'" class="BaseCard-doneStatus">
+        <base-icon name="checked"></base-icon>
+      </div>
       <div class="BaseCard-heading">
         <input type="text" v-model="task.name" disabled="true" />
         <div class="BaseCard-Icon-wrapper">
           <base-icon class="BaseCard-Icon" name="edit" @click="editTodo"></base-icon>
-          <base-icon class="BaseCard-Icon" name="delete"></base-icon>
+          <base-icon class="BaseCard-Icon" name="delete" @click="deleteTask"></base-icon>
         </div>
       </div>
       <textarea
@@ -27,7 +37,7 @@ export default {
   components: {
     BaseIcon,
   },
-  props: ["data"],
+  props: ["data", "tasks", "category"],
   data() {
     return {
       inputsDisabled: true,
@@ -48,6 +58,36 @@ export default {
           todo: this.data,
         });
     },
+    deleteTask(e) {
+      const taskId = e.target.parentNode.parentNode.parentNode.id;
+      /* eslint-disable */
+      this.data.todo.tasks = this.data.todo.tasks.filter((item) => {
+        return item._id !== taskId;
+      });
+
+      this.$store.dispatch("updateTodo", {
+        id: this.$route.params.id,
+        todo: this.data,
+      });
+    },
+    startDrag(event, item) {
+      event.target.style.border = "5px solid black";
+      const status = item.status;
+      const itemID = item._id;
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("itemID", itemID);
+    },
+    onDrop(event, status) {
+      const itemID = event.dataTransfer.getData("itemID");
+      const item = this.data.todo.tasks.find((el) => el._id == itemID);
+      item.status = status;
+
+      this.$store.dispatch("updateTodo", {
+        id: this.$route.params.id,
+        todo: this.data,
+      });
+    },
   },
 };
 </script>
@@ -60,6 +100,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 270px;
 }
 
 .BaseCard {
@@ -70,6 +111,23 @@ export default {
   margin: 20px;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  &-doneStatus {
+    background: rgba(47, 255, 92, 0.425);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 20px;
+
+    & img {
+      position: relative;
+      top: 25%;
+      pointer-events: none;
+    }
+  }
 
   &-heading {
     display: flex;

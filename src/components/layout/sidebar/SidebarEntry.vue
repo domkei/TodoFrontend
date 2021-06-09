@@ -16,12 +16,6 @@ export default {
       todos: null,
     };
   },
-  props: {
-    entries: {
-      type: Array,
-      required: true,
-    },
-  },
   created() {
     this.$store.dispatch("getTodos");
   },

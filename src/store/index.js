@@ -5,6 +5,7 @@ export default createStore({
     todos: {},
     error: {},
     activeTodo: {},
+    response: null,
   },
   mutations: {
     SET_TODOS(state, todos) {
@@ -15,6 +16,9 @@ export default createStore({
     },
     SET_ACTIVETODO(state, activeTodo) {
       state.activeTodo = activeTodo;
+    },
+    SET_RESPONSE(state, response) {
+      state.response = response;
     },
   },
   actions: {
@@ -63,6 +67,8 @@ export default createStore({
             });
             console.error("Something went wrong:", responseJson.message.name, responseJson.message.code);
           }
+
+          context.commit("SET_RESPONSE", responseJson);
         })
 
         .catch((error) => {
@@ -116,10 +122,42 @@ export default createStore({
             });
             console.error("Something went wrong:", responseJson.message.name, responseJson.message.code);
           }
+          context.commit("SET_RESPONSE", responseJson);
         })
 
         .catch((error) => {
           console.log(error);
+        });
+    },
+    deleteTodo(context, payload) {
+      const id = payload.id;
+      const URL = `http://localhost:3000/todos/${id}`;
+
+      fetch(URL, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Something went wrong");
+          }
+        })
+        .then((responseJson) => {
+          if (responseJson.message) {
+            context.commit("SET_ERROR", {
+              name: responseJson.message.name,
+              code: responseJson.message.code,
+            });
+            console.error("Something went wrong:", responseJson.message.name, responseJson.message.code);
+          }
+        })
+
+        .catch((error) => {
+          console.log({ error });
         });
     },
   },
@@ -137,6 +175,9 @@ export default createStore({
           errorMessage = "Es ist bereits ein Todo mit dem selben Namen vorhanden :(";
         }
       return errorMessage;
+    },
+    response(state) {
+      return state.response;
     },
   },
 });
