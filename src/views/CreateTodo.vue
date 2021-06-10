@@ -46,14 +46,15 @@ export default {
 
     "$store.state.error"(value) {
       if (value.code === 11000) {
-        this.error.message = "Es ist bereits ein Todo mit diesem Namen vorhanden";
+        this.error.message = "There is already a todo list with this name. Please choose another name.";
       }
       this.error.status = true;
     },
     "$store.state.response": function(value) {
-      this.$router.push({
-        path: `/todos/${value._id}`,
-      });
+      if (!this.error.status)
+        this.$router.push({
+          path: `/todos/${value._id}`,
+        });
     },
   },
   methods: {

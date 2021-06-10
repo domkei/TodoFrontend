@@ -12,7 +12,7 @@
         <base-icon name="checked"></base-icon>
       </div>
       <div class="BaseCard-heading">
-        <input type="text" v-model="task.name" disabled="true" />
+        <input type="text" v-model="task.name" disabled="true" draggable="false" />
         <div class="BaseCard-Icon-wrapper">
           <base-icon class="BaseCard-Icon black" name="edit" @click="editTodo" draggable="false"></base-icon>
           <base-icon class="BaseCard-Icon black delete" name="delete" @click="deleteTask" draggable="false"></base-icon>
@@ -26,6 +26,7 @@
         placeholder="describe the task.."
         v-model="task.description"
         disabled="true"
+        draggable="false"
       ></textarea>
     </div>
   </div>
@@ -100,7 +101,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 350px;
+  min-height: 310px;
 }
 
 .BaseCard {
