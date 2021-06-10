@@ -11,7 +11,7 @@
       <div class="Sidebar-nav-entry">
         <router-link to="/create" class="Sidebar-nav-link">
           <base-icon class="Sidebar-nav-icon" name="document" />
-          New Todo
+          New Todo List
         </router-link>
       </div>
     </div>

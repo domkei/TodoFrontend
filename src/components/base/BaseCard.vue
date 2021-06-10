@@ -100,7 +100,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 305px;
+  min-height: 350px;
 }
 
 .BaseCard {
@@ -148,7 +148,7 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     height: 30%;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     input[type="text"] {
       font-size: 16px;
@@ -158,6 +158,7 @@ export default {
       color: $color-background-dark;
       font-size: 18px;
       text-transform: uppercase;
+      padding: 5px;
 
       &:disabled {
         background: none;
@@ -179,6 +180,8 @@ export default {
     resize: none;
     background: $color-white-main;
     font-size: 15px;
+    border: 1px solid $color-background-dark;
+    padding: 5px;
 
     &:disabled {
       background: none;

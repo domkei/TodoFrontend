@@ -1,7 +1,7 @@
 <template>
   <div class="Home">
     <div class="Home-description">
-      <h1>TodoMate helps you with your daily tasks</h1>
+      <h1>Todo<span>Mate</span> helps you with your daily tasks</h1>
       <p>Start by creating a New Todo List</p>
       <base-button @click="redirectOnClick">Get started</base-button>
     </div>
@@ -51,6 +51,10 @@ export default {
     position: absolute;
     top: 60%;
     left: 35%;
+  }
+
+  span {
+    color: $color-main-purple;
   }
 }
 </style>
