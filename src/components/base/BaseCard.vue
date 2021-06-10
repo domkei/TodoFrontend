@@ -1,5 +1,10 @@
 <template>
-  <div class="BaseCard-container" @drop="onDrop($event, category)" @dragenter.prevent @dragover.prevent>
+  <div
+    class="BaseCard-container"
+    @drop="onDrop($event, category)"
+    @dragenter.prevent
+    @dragover.prevent
+  >
     <div
       v-for="task in tasks"
       class="BaseCard"
@@ -14,8 +19,18 @@
       <div class="BaseCard-heading">
         <input type="text" v-model="task.name" disabled="true" />
         <div class="BaseCard-Icon-wrapper">
-          <base-icon class="BaseCard-Icon black" name="edit" @click="editTodo" draggable="false"></base-icon>
-          <base-icon class="BaseCard-Icon black delete" name="delete" @click="deleteTask" draggable="false"></base-icon>
+          <base-icon
+            class="BaseCard-Icon black"
+            name="edit"
+            @click="editTodo"
+            draggable="false"
+          ></base-icon>
+          <base-icon
+            class="BaseCard-Icon black delete"
+            name="delete"
+            @click="deleteTask"
+            draggable="false"
+          ></base-icon>
         </div>
       </div>
       <textarea
@@ -158,6 +173,7 @@ export default {
       color: $color-background-dark;
       font-size: 18px;
       text-transform: uppercase;
+      width: 100%;
 
       &:disabled {
         background: none;

@@ -48,9 +48,7 @@ export default {
   }
 
   &-image {
-    position: absolute;
-    top: 60%;
-    left: 35%;
+    margin-top: -100px;
   }
 }
 </style>
